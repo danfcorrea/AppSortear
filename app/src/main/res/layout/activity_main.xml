@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".activities.MainActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:contentDescription="@string/logo"
+        android:src="@mipmap/ic_launcher_foreground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:cardCornerRadius="15dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/minvalue"
+                app:layout_constraintBottom_toTopOf="@id/minvalue"
+                android:text="@string/minvalue"/>
+
+            <EditText
+                android:id="@+id/minvalue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="26sp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="50dp"
+                android:autofillHints="0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/maxvalue"
+                app:layout_constraintBottom_toTopOf="@id/maxvalue"
+                app:layout_constraintStart_toStartOf="@id/maxvalue"/>
+
+            <EditText
+                android:id="@+id/maxvalue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="50dp"
+                android:inputType="number"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/minvalue"
+                android:autofillHints="0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/amountofnumbers"
+                app:layout_constraintBottom_toTopOf="@id/amountofnumbers"
+                app:layout_constraintStart_toStartOf="@id/amountofnumbers"/>
+
+            <EditText
+                android:id="@+id/amountofnumbers"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="50dp"
+                android:inputType="number"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/maxvalue"
+                android:autofillHints="0" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/randomSwitch"
+                android:layout_width="wrap_content"
+                app:switchPadding="10dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/noRepeat"
+                app:layout_constraintEnd_toEndOf="@id/amountofnumbers"
+                app:layout_constraintTop_toBottomOf="@id/amountofnumbers" />
+
+            <Button
+                android:id="@+id/generateButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:onClick="generate"
+                android:paddingHorizontal="50dp"
+                android:paddingVertical="15dp"
+                android:text="@string/generate"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="@id/amountofnumbers"
+                app:layout_constraintTop_toBottomOf="@id/randomSwitch"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

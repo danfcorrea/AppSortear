@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AppSortear</string>
+    <string name="minvalue">Valor mínimo</string>
+    <string name="maxvalue">Valor máximo</string>
+    <string name="amountofnumbers">Quantidade de números</string>
+    <string name="generate">Sortear</string>
+    <string name="title">Sortear números</string>
+    <string name="resultado_title">Resultado</string>
+    <string name="logo">LOGO</string>
+    <string name="noRepeat">Não repetir números</string>
+</resources>
