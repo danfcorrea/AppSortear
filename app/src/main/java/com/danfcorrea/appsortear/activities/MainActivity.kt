@@ -18,28 +18,30 @@ class MainActivity : AppCompatActivity() {
     private var maxValue by Delegates.notNull<Int>()
     private var amountOfNumbers by Delegates.notNull<Int>()
     private lateinit var randomOrNot: SwitchCompat
-    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        sharedPreferences = getPreferences(MODE_PRIVATE)
     }
 
     fun generate(view: View) {
-        loadValues()
-        if(maxValue < minValue)
-            Toast.makeText(baseContext, "Valor mínimo deve ser menor que Valor máximo", Toast.LENGTH_SHORT).show()
-        else if (maxValue - minValue < amountOfNumbers-1)
-            Toast.makeText(baseContext, "Não é possível gerar essa quantidade de números sem repetir", Toast.LENGTH_SHORT).show()
-        else {
-            val intent = Intent(this, ResultActivity::class.java).apply {
-                if (randomOrNot.isChecked)
-                    putExtra("NUMBER_LIST", generateValuesNoRepeat(amountOfNumbers, minValue, maxValue) as ArrayList)
-                else
-                    putExtra("NUMBER_LIST", generateValues(amountOfNumbers, minValue, maxValue) as ArrayList)
-                }
-            startActivity(intent)
+        if (validateValues()){
+            loadValues()
+            if(maxValue < minValue)
+                Toast.makeText(baseContext, "Valor mínimo deve ser menor que Valor máximo", Toast.LENGTH_SHORT).show()
+            else if (maxValue - minValue < amountOfNumbers-1 && randomOrNot.isChecked)
+                Toast.makeText(baseContext, "Não é possível gerar essa quantidade de números sem repetir", Toast.LENGTH_SHORT).show()
+            else {
+                val intent = Intent(this, ResultActivity::class.java).apply {
+                    if (randomOrNot.isChecked)
+                        putExtra("NUMBER_LIST", generateValuesNoRepeat(amountOfNumbers, minValue, maxValue) as ArrayList)
+                    else
+                        putExtra("NUMBER_LIST", generateValues(amountOfNumbers, minValue, maxValue) as ArrayList)
+                    }
+                startActivity(intent)
+            }
+        }else{
+            Toast.makeText(baseContext, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -48,6 +50,17 @@ class MainActivity : AppCompatActivity() {
         maxValue = findViewById<EditText>(R.id.maxvalue).text.toString().toInt()
         amountOfNumbers = findViewById<EditText>(R.id.amountofnumbers).text.toString().toInt()
         randomOrNot = findViewById(R.id.randomSwitch)
+    }
+
+    private fun validateValues() : Boolean{
+        val min = findViewById<EditText>(R.id.minvalue).text
+        val max = findViewById<EditText>(R.id.maxvalue).text
+        val amount = findViewById<EditText>(R.id.amountofnumbers).text
+
+        if(min.isEmpty() || max.isEmpty() || amount.isEmpty())
+            return false
+
+        return true
     }
 
     private fun generateValues(size: Int, min: Int, max: Int): MutableList<Int> {

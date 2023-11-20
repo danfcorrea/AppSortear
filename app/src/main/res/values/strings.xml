@@ -8,4 +8,5 @@
     <string name="resultado_title">Resultado</string>
     <string name="logo">LOGO</string>
     <string name="noRepeat">Não repetir números</string>
+    <string name="defaultvalue">0</string>
 </resources>
